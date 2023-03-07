@@ -13,7 +13,11 @@ const app = express();
 connectDB();
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: process.env.ORIGIN,
+    credentials: true,
+    optionsSuccessStatus: 200
+}));
 
 app.use('/api/user',userRoutes);
 app.use('/api/chat',chatRoutes);

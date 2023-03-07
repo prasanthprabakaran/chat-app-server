@@ -74,7 +74,7 @@ export const forgotPassword = asyncHandler(async (req, res) => {
         }
         //User exist and now create a one time link valid for 15 minutes
         const token = jwt.sign(payload, secret, { expiresIn: '15m' });
-        const link = `http://localhost:3000/reset-password/${user._id}/${token}`;
+        const link = `${process.env.ORIGIN}/${user._id}/${token}`;
         var transporter = nodeMailer.createTransport({
             host: 'smtp.gmail.com',
             port: 465,
